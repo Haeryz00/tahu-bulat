@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import code.lab5.zombieList.walkingZombie;
-import code.lab5
+import code.lab5.etcClass.*;
 
 public class App extends Application {
     private walkingZombie walkerZombie;
