@@ -13,6 +13,7 @@ import code.lab5.etcClass.*;
 
 public class App extends Application {
     private walkingZombie walkerZombie;
+    private plant plantae;
     private int armoredZombieArmorStrength = 100;
     private int armoredZombieHealth = 100;
 
@@ -25,7 +26,7 @@ public class App extends Application {
         primaryStage.setTitle("Zombie Game");
 
         walkerZombie = new walkingZombie();
-        plant plant = new plant();
+        plantae = new plant();
         walkerZombie.setHealth(100);
 
         // Walker Zombie health label
@@ -64,7 +65,7 @@ public class App extends Application {
     }
 
     private void attackWalkerZombie() {
-        walkerZombie.getzombieinfo();
+        plantae.attack(walkerZombie);
         walkerZombieHealthLabel.setText("Health: " + walkerZombie.health + "%");
     }
 
