@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import code.lab5.zombieList.walkingZombie;
+import code.lab5
 
 public class App extends Application {
     private walkingZombie walkerZombie;
@@ -23,8 +24,8 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Zombie Game");
 
-
-        walkerZombie = new walkingZombie(100);
+        walkerZombie = new walkingZombie();
+        plant plant = new plant();
         walkerZombie.setHealth(100);
 
         // Walker Zombie health label

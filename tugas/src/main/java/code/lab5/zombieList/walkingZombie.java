@@ -12,9 +12,9 @@ public class walkingZombie extends zombie{
     }
 
 
-    public walkingZombie(int health) {
+    /* public walkingZombie(int health) {
         this.health = health;
-    }
+    } */
 
 
 
