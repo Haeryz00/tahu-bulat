@@ -28,23 +28,19 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Zombie Game");
 
-        walkerZombie = new walkingZombie();
+        walkerZombie = new walkingZombie(100);
         plantae = new plant();
-        armzom = new armoredZombie();
-        walkerZombie.setHealth(100);
-        armzom.setHealth(100);
-        Arm = new Armor();
-        Arm.setStrength(50);
-        armzom.setArmor(Arm);
+        Arm = new Armor(50);
+        armzom = new armoredZombie(100, Arm);
 
         // Walker Zombie health label
         Label walkerZombieLabel = new Label("Walker Zombie");
-        walkerZombieHealthLabel = new Label("Health: " + walkerZombie.health + "%");
+        walkerZombieHealthLabel = new Label("Health: " + walkerZombie.getHealth() + "%");
 
         // Armored Zombie armor and health labels
         Label armoredZombieLabel = new Label("Armored Zombie");
         armoredZombieArmorLabel = new Label("Armor Strength: " + Arm.getStrength() + "%");
-        armoredZombieHealthLabel = new Label("Health: " + armoredZombieHealth + "%");
+        armoredZombieHealthLabel = new Label("Health: " + armzom.getHealth() + "%");
 
         // Attack buttons
         Button attackWalkerZombieButton = new Button("Attack Walker Zombie");
@@ -73,17 +69,16 @@ public class App extends Application {
 
     private void attackWalkerZombie() {
         plantae.attack(walkerZombie);
-        walkerZombieHealthLabel.setText("Health: " + walkerZombie.health + "%");
+        walkerZombieHealthLabel.setText("Health: " + walkerZombie.getHealth() + "%");
     }
 
     private void attackArmoredZombie() {
         plantae.attack(armzom);
-        armzom.attack();
-        int updatedArmorStrength = armzom.getArmor().getArmorInfo();
+        armzom.destroyed();
+        int updatedArmorStrength = armzom.getArmor().getStrength();
         armoredZombieArmorLabel.setText("Armor Strength: " + updatedArmorStrength + "%");
         armoredZombieHealthLabel.setText("Health: " + armzom.getHealth() + "%");
     }
-    
 
     public static void main(String[] args) {
         launch(args);

@@ -1,33 +1,20 @@
 package code.lab5.zombieList;
 
 public class walkingZombie extends zombie{
-    public int health;
-
-    public int getHealth() {
-        return this.health;
+    public walkingZombie(int health) {
+        super(health);
     }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-
-    /* public walkingZombie(int health) {
-        this.health = health;
-    } */
-
-
 
     @Override
-    public void destroyed(){
-        if(health == 0){
-        System.out.println("Walking zombie mati");  
+    public void destroyed() {
+        if (health > 0) {
+            health -= health * 0.04;
         }
+        getZombieInfo();
     }
 
-
-    public void getzombieinfo() {
-        health -= getHealth()* 0.04;
-        System.out.println("Health walking zombie: " + health);
+    public void getZombieInfo() {
+        System.out.println("Walker Zombie");
+        System.out.println("Health: " + health);
     }
 }

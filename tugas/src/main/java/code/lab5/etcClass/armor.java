@@ -1,32 +1,30 @@
 package code.lab5.etcClass;
 
 public class Armor implements destroyable {
-    public int strength;
+    private int strength;
 
     public int getStrength() {
-        return strength;
+        return this.strength;
     }
 
     public void setStrength(int strength) {
         this.strength = strength;
     }
 
-    @Override
-    public void destroyed() {
-        System.out.println("Armor hancur");
+    public Armor(int strength) {
+        this.strength = strength;
     }
 
-    public int getArmorInfo() {
-        if (strength > 0) {
-            int damageToArmor = (int) (strength * 0.05);
-            strength -= damageToArmor;
+    @Override
+    public void destroyed() {
+        strength -= 5;
+        setStrength(strength);
+        getArmorInfo();
+    }
+    
 
-            // Ensure armor strength does not go below 0
-            if (strength < 0) {
-                strength = 0;
-            }
-        }
-        return strength;
+    public void getArmorInfo(){
+        System.out.println("Armor strength: " + getStrength() + "%");
     }
     
 
