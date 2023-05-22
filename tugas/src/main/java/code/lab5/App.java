@@ -10,13 +10,16 @@ import javafx.stage.Stage;
 
 import code.lab5.zombieList.walkingZombie;
 import code.lab5.etcClass.*;
+import code.lab5.zombieList.armoredZombie;
+import code.lab5.etcClass.Armor;
 
 public class App extends Application {
     private walkingZombie walkerZombie;
+    private armoredZombie armzom;
     private plant plantae;
+    private Armor Arm;
     private int armoredZombieArmorStrength = 100;
     private int armoredZombieHealth = 100;
-
     private Label walkerZombieHealthLabel;
     private Label armoredZombieArmorLabel;
     private Label armoredZombieHealthLabel;
@@ -27,7 +30,12 @@ public class App extends Application {
 
         walkerZombie = new walkingZombie();
         plantae = new plant();
+        armzom = new armoredZombie();
         walkerZombie.setHealth(100);
+        armzom.setHealth(100);
+        Arm = new Armor();
+        Arm.setStrength(50);
+        armzom.setArmor(Arm);
 
         // Walker Zombie health label
         Label walkerZombieLabel = new Label("Walker Zombie");
@@ -35,7 +43,7 @@ public class App extends Application {
 
         // Armored Zombie armor and health labels
         Label armoredZombieLabel = new Label("Armored Zombie");
-        armoredZombieArmorLabel = new Label("Armor Strength: " + armoredZombieArmorStrength + "%");
+        armoredZombieArmorLabel = new Label("Armor Strength: " + Arm.getStrength() + "%");
         armoredZombieHealthLabel = new Label("Health: " + armoredZombieHealth + "%");
 
         // Attack buttons
@@ -55,8 +63,7 @@ public class App extends Application {
                 armoredZombieLabel,
                 armoredZombieArmorLabel,
                 armoredZombieHealthLabel,
-                attackArmoredZombieButton
-        );
+                attackArmoredZombieButton);
 
         Scene scene = new Scene(vbox, 300, 250);
         scene.getStylesheets().add("style.css"); // Add CSS style sheet
@@ -70,20 +77,13 @@ public class App extends Application {
     }
 
     private void attackArmoredZombie() {
-        if (armoredZombieArmorStrength > 0) {
-            armoredZombieArmorStrength -= 5;
-            if (armoredZombieArmorStrength < 0) {
-                armoredZombieArmorStrength = 0;
-            }
-            armoredZombieArmorLabel.setText("Armor Strength: " + armoredZombieArmorStrength + "%");
-        } else {
-            armoredZombieHealth -= 2;
-            if (armoredZombieHealth < 0) {
-                armoredZombieHealth = 0;
-            }
-            armoredZombieHealthLabel.setText("Health: " + armoredZombieHealth + "%");
-        }
+        plantae.attack(armzom);
+        armzom.attack();
+        int updatedArmorStrength = armzom.getArmor().getArmorInfo();
+        armoredZombieArmorLabel.setText("Armor Strength: " + updatedArmorStrength + "%");
+        armoredZombieHealthLabel.setText("Health: " + armzom.getHealth() + "%");
     }
+    
 
     public static void main(String[] args) {
         launch(args);

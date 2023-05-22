@@ -12,6 +12,6 @@ public class zombie implements destroyable{
 }
 
     public void getzombieinfo() {
-        
+        System.out.println("Health: " +health);
     }
 }
